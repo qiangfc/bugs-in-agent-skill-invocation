@@ -29,7 +29,8 @@ The materials cover five open-source projects: OpenClaw, Hermes Agent, Dify, Ope
 │   └── Coding_Process/
 └── RQ4(repair)/
     ├── Repair_Strategies_and_Cost_Full_Sample_Labels.csv
-    ├── Root_Cause_Repair_Cost.xlsx
+    ├── RQ4_359_Selected_Repairs.xlsx
+    ├── Root_Cause_Repair_Cost_359.xlsx
     └── RQ4_repair/
         ├── Repair_Coding_Report.md
         ├── Repair_Strategy_Codebook.md
@@ -85,7 +86,7 @@ Key files:
 
 ## RQ4: Corrective Actions and Repair Cost
 
-`RQ4(repair)` contains records for the 901 retained reports and analyses of documented corrective actions, recorded issue handling durations, and code change sizes.
+`RQ4(repair)` contains source records for all 901 retained reports. The repair-strategy, recorded handling duration, and change-size summaries use the same working set of 359 reports.
 
 The `RQ4_repair/` subfolder provides repair-strategy coding for **359 reports with codable corrective actions**, retaining their original assignments: **187 pilot reports** and **172 reliability reports**. The codebook defines seven strategies: interface and representation alignment; Skill and context provisioning; execution and state consistency; configuration and environment adaptation; access and trust-boundary enforcement; feedback and artifact delivery; and procedural guidance correction. Strategies describe corrective actions rather than being assigned directly from root-cause IDs. A root cause may correspond to multiple strategies.
 
@@ -94,7 +95,8 @@ The primary Cohen's kappa is **0.902142**, calculated from the original labels o
 Key files:
 
 - `Repair_Strategies_and_Cost_Full_Sample_Labels.csv`: Per-report records for all 901 reports, including Issue URLs, invocation stages, failure descriptions, root-cause descriptions and category labels, repair approaches, recorded handling durations and code changes, report summaries, and review rationales. The file also retains the associated symptom classifications and outcome attributes.
-- `Root_Cause_Repair_Cost.xlsx`: Summaries and analyses of recorded handling durations and code change sizes by root-cause category.
+- [`RQ4_359_Selected_Repairs.xlsx`](RQ4%28repair%29/RQ4_359_Selected_Repairs.xlsx) contains the 359 selected reports, their repair evidence and strategy labels, and summaries of recorded handling duration and change size by repair strategy.
+- [`Root_Cause_Repair_Cost_359.xlsx`](RQ4%28repair%29/Root_Cause_Repair_Cost_359.xlsx) summarizes recorded handling duration and change size by root-cause category for the same 359 reports.
 - [`RQ4_repair/Repair_Coding_Report.md`](RQ4%28repair%29/RQ4_repair/Repair_Coding_Report.md): Sample reconciliation, coding procedures, strategy distributions, agreement results, root-cause associations, and evidence-audit examples.
 - [`RQ4_repair/Repair_Strategy_Codebook.md`](RQ4%28repair%29/RQ4_repair/Repair_Strategy_Codebook.md): Definitions, included actions, category boundaries, single-label selection rules, and examples for the seven repair strategies.
 - [`RQ4_repair/Repair_Strategy_Coding.xlsx`](RQ4%28repair%29/RQ4_repair/Repair_Strategy_Coding.xlsx): Thirteen worksheets containing the codebook, both original annotation sets and reviewed labels for 359 reports, strategy distributions, root-cause cross-tabulations, reliability calculations, disagreements, scope checks, and all 901 source records.
