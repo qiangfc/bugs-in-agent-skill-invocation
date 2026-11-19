@@ -4,6 +4,16 @@ This repository organizes reports of failures encountered when agents use Skills
 
 The materials cover five open-source projects: OpenClaw, Hermes Agent, Dify, Open WebUI, and pi. Organized around four research questions, the repository provides research artifacts, including coding definitions, annotation records, category labels, supporting evidence, consolidation and review records, and agreement calculations. These materials support checking the results and tracing the coding process.
 
+## Sample Split
+
+The 901 retained reports are split into **452 Pilot** and **449 Reliability**. Within each repository, sort by Issue number; use random.Random(42).sample without replacement to draw half rounded up for Pilot; assign the remainder to Reliability. The codebooks were developed before this resplit. RQ1 and RQ2 have 449 pairs per field. The author confirmed the retrospectively assigned categories during human review. RQ3 documents two rounds for all 452 Pilot and 449 Reliability reports. The author confirmed the newly assigned labels. The linked Kappa reports give the paired counts and agreement results.
+
+## Stage Fields
+
+The full-sample tables retain the original summary's `Invocation stage` field. Figure 3 cross-tabulates that field with symptom codes. The RQ2 result that 21 of 24 root-cause categories have reports in all four stages also uses `Invocation stage`.
+
+The RQ1 coding records use `Observed stage` (also named `Observed failure stage` in the pilot files), and the RQ2 coding records use `Root-cause stage`. Join those records to the full-sample tables by Issue URL. The pilot consolidation files document cases where a stage was filled from the full-sample invocation stage.
+
 ## Research Questions
 
 - **RQ1 — Symptoms:** What user- or system-observable anomalies characterize the reported failures?
@@ -18,14 +28,17 @@ The materials cover five open-source projects: OpenClaw, Hermes Agent, Dify, Ope
 ├── RQ1(Symptoms)/
 │   ├── RQ1_Codebook.xlsx
 │   ├── Full_Sample_Classification_Labels.xlsx
+│   ├── RQ1_RQ2_Kappa_Results_and_Interpretation.md
 │   └── Coding_Process/
 ├── RQ2(Root Causes)/
 │   ├── RQ2_Codebook.xlsx
 │   ├── Full_Sample_Classification_Labels.xlsx
+│   ├── RQ1_RQ2_Kappa_Results_and_Interpretation.md
 │   └── Coding_Process/
 ├── RQ3(Impact and Observability)/
 │   ├── RQ3_Attribute_Analysis.xlsx
 │   ├── Full_Sample_Labels.csv
+│   ├── RQ3_Kappa_and_Statistics.md
 │   └── Coding_Process/
 └── RQ4(repair)/
     ├── Repair_Strategies_and_Cost_Full_Sample_Labels.csv
@@ -79,18 +92,25 @@ Key files:
 
 - `RQ3_Attribute_Analysis.xlsx`: Attribute analyses, representative labels, and typical cases organized by failure-symptom and root-cause category.
 - `Full_Sample_Labels.csv`: Per-report attribute labels for 901 reports, together with related classifications, rationales, and assignment types. This file supports full-sample attribute distributions and the joint distribution of the two attributes.
-- `Coding_Process/Pilot_Attribute_Labels.csv`: Supplementary attribute annotations and rationales for 454 pilot reports.
-- `Coding_Process/Reliability_Original_Labels_Round_1.csv` and `Coding_Process/Reliability_Original_Labels_Round_2.csv`: Original annotations from two rounds covering 447 reliability reports.
+- `Coding_Process/Pilot_Original_Labels_Round_1.csv` and `Coding_Process/Pilot_Original_Labels_Round_2.csv`: Two recorded labels for each of the 452 Pilot reports, with per-row source notes.
+- `Coding_Process/Pilot_Attribute_Labels.csv`: Attribute records for the 452 reports in the Pilot roster.
+- `Coding_Process/Reliability_Original_Labels_Round_1.csv` and `Coding_Process/Reliability_Original_Labels_Round_2.csv`: Two recorded labels for all 449 Reliability reports, with the annotation source on each row.
 - `Coding_Process/Original_Label_Comparison.csv`: Field-level comparisons of the two rounds of original labels.
 - `Coding_Process/Disagreements_and_Undetermined_Review.csv`: Subsequent review records for disagreements and undetermined items.
+
+## RQ1–RQ3 Agreement Results
+
+- [RQ1 agreement results](RQ1%28Symptoms%29/RQ1_RQ2_Kappa_Results_and_Interpretation.md)
+- [RQ2 agreement results](RQ2%28Root%20Causes%29/RQ1_RQ2_Kappa_Results_and_Interpretation.md)
+- [RQ3 agreement results](RQ3%28Impact%20and%20Observability%29/RQ3_Kappa_and_Statistics.md)
 
 ## RQ4: Corrective Actions and Repair Cost
 
 `RQ4(repair)` contains source records for all 901 retained reports. The repair-strategy, recorded handling duration, and change-size summaries use the same working set of 359 reports.
 
-The `RQ4_repair/` subfolder provides repair-strategy coding for **359 reports with codable corrective actions**, retaining their original assignments: **187 pilot reports** and **172 reliability reports**. The codebook defines seven strategies: interface and representation alignment; Skill and context provisioning; execution and state consistency; configuration and environment adaptation; access and trust-boundary enforcement; feedback and artifact delivery; and procedural guidance correction. Strategies describe corrective actions rather than being assigned directly from root-cause IDs. A root cause may correspond to multiple strategies.
+The `RQ4_repair/` subfolder provides repair-strategy coding for **359 reports with codable corrective actions**, with **187 Pilot reports** and **172 Reliability reports** in the original RQ4 split. The codebook defines seven strategies: interface and representation alignment; Skill and context provisioning; execution and state consistency; configuration and environment adaptation; access and trust-boundary enforcement; feedback and artifact delivery; and procedural guidance correction. Strategies describe corrective actions rather than being assigned directly from root-cause IDs. A root cause may correspond to multiple strategies.
 
-The primary Cohen's kappa is **0.902142**, calculated from the original labels of the **172 reliability reports** before discussion and adjudication. Agreement statistics for the pilot and all-report subsets are supplementary. Repair-strategy percentages use **359 reports** as the denominator; the full source dataset contains **901 reports**.
+Cohen’s kappa for the two stored coding passes on the **172 codable reports** in the original RQ4 Reliability subset is **0.902142**. The two passes agreed on **158 reports** and differed on **14**. Repair-strategy percentages use **359 reports** as the denominator; the full source dataset contains **901 reports**.
 
 Key files:
 
