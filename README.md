@@ -8,12 +8,6 @@ The materials cover five open-source projects: OpenClaw, Hermes Agent, Dify, Ope
 
 The 901 retained reports are split into **452 Pilot** and **449 Reliability**. Within each repository, sort by Issue number; use random.Random(42).sample without replacement to draw half rounded up for Pilot; assign the remainder to Reliability. The codebooks were developed before this resplit. RQ1 and RQ2 have 449 pairs per field. The author confirmed the retrospectively assigned categories during human review. RQ3 documents two rounds for all 452 Pilot and 449 Reliability reports. The author confirmed the newly assigned labels. The linked Kappa reports give the paired counts and agreement results.
 
-## Stage Fields
-
-The full-sample tables retain the original summary's `Invocation stage` field. Figure 3 cross-tabulates that field with symptom codes. The RQ2 result that 21 of 24 root-cause categories have reports in all four stages also uses `Invocation stage`.
-
-The RQ1 coding records use `Observed stage` (also named `Observed failure stage` in the pilot files), and the RQ2 coding records use `Root-cause stage`. Join those records to the full-sample tables by Issue URL. The pilot consolidation files document cases where a stage was filled from the full-sample invocation stage.
-
 ## Research Questions
 
 - **RQ1 — Symptoms:** What user- or system-observable anomalies characterize the reported failures?
