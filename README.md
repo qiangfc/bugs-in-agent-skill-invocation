@@ -1,118 +1,19 @@
-# Analysis Materials for Failures in Agent–Skill Interactions
+# Bugs in Agent Skill Invocation
 
-This repository organizes reports of failures encountered when agents use Skills and tools. It contains analyses of failure symptoms, root-cause mechanisms, task impact, user observability, documented corrective actions, and repair cost.
+## About This Repository
 
-The materials cover five open-source projects: OpenClaw, Hermes Agent, Dify, Open WebUI, and pi. Organized around four research questions, the repository provides research artifacts, including coding definitions, annotation records, category labels, supporting evidence, consolidation and review records, and agreement calculations. These materials support checking the results and tracing the coding process.
+This repository contains the dataset for a study of 901 failure reports from five open-source projects where agents invoke skills or use tools. The projects are OpenClaw, Hermes Agent, Dify, Open WebUI, and pi.
 
-## Sample Split
+The study examines failure symptoms (RQ1), root causes (RQ2), task impact and user observability (RQ3), and documented corrective actions and repair cost (RQ4). The dataset supports replication and further research on the reliability of agent skill invocation.
 
-The 901 retained reports are split into **452 Pilot** and **449 Reliability**. Within each repository, sort by Issue number; use random.Random(42).sample without replacement to draw half rounded up for Pilot; assign the remainder to Reliability. The codebooks were developed before this resplit. RQ1 and RQ2 have 449 pairs per field. The author confirmed the retrospectively assigned categories during human review. RQ3 documents two rounds for all 452 Pilot and 449 Reliability reports. The author confirmed the newly assigned labels. The linked Kappa reports give the paired counts and agreement results.
+## Dataset
 
-## Research Questions
+- [Full_Sample_Labels.csv](Full_Sample_Labels.csv) contains one row per report, with issue metadata, sample assignments, symptom and root-cause labels, invocation stages, components, task impact, user observability, and available repair information.
 
-- **RQ1 — Symptoms:** What user- or system-observable anomalies characterize the reported failures?
-- **RQ2 — Root Causes:** What implementation, configuration, or runtime mechanisms cause these failures?
-- **RQ3 — Impact and Observability:** How do failures affect users' tasks, and are they directly apparent from normal user-facing feedback?
-- **RQ4 — Repair:** What corrective actions are documented for reported failures, and how do recorded issue handling durations and code change sizes vary across root-cause groups?
+## Kappa Results
 
-## Repository Structure
+- [Kappa Results and Interpretation](Kappa_Results_and_Interpretation.md) describes the reliability samples and reports Cohen’s κ for the annotated fields and repair strategies.
 
-```text
-.
-├── RQ1(Symptoms)/
-│   ├── RQ1_Codebook.xlsx
-│   ├── Full_Sample_Classification_Labels.xlsx
-│   ├── RQ1_RQ2_Kappa_Results_and_Interpretation.md
-│   └── Coding_Process/
-├── RQ2(Root Causes)/
-│   ├── RQ2_Codebook.xlsx
-│   ├── Full_Sample_Classification_Labels.xlsx
-│   ├── RQ1_RQ2_Kappa_Results_and_Interpretation.md
-│   └── Coding_Process/
-├── RQ3(Impact and Observability)/
-│   ├── RQ3_Attribute_Analysis.xlsx
-│   ├── Full_Sample_Labels.csv
-│   ├── RQ3_Kappa_and_Statistics.md
-│   └── Coding_Process/
-└── RQ4(repair)/
-    ├── Repair_Strategies_and_Cost_Full_Sample_Labels.csv
-    ├── RQ4_359_Selected_Repairs.xlsx
-    ├── Root_Cause_Repair_Cost_359.xlsx
-    └── RQ4_repair/
-        ├── Repair_Coding_Report.md
-        ├── Repair_Strategy_Codebook.md
-        └── Repair_Strategy_Coding.xlsx
-```
+## Acknowledgments
 
-Each RQ directory keeps its full-sample records and main analyses at the root, along with a codebook where applicable. Where present, a `Coding_Process/` subfolder contains coding, consolidation, reliability, and review records.
-
-## RQ1: Failure Symptoms
-
-`RQ1(Symptoms)` contains the classification and coding-process materials for failure symptoms. The codebook defines **19 failure-symptom categories**, identified by `S01`–`S19`, with definitions, inclusion and exclusion criteria, category boundaries, single-label decision rules, and evidence examples.
-
-Key files:
-
-- `RQ1_Codebook.xlsx`: Failure-symptom codebook and associated frequency information.
-- `Full_Sample_Classification_Labels.xlsx`: Per-report category labels, stages, components, rationales, and confirmation records.
-- `Coding_Process/Pilot_Initial_Coding_Round_1.xlsx` and `Coding_Process/Pilot_Initial_Coding_Round_2.xlsx`: Initial coding and evidence excerpts from the two pilot rounds.
-- `Coding_Process/Pilot_Code_Comparison_and_Consolidation.xlsx`: Pilot-code comparison, consolidation of similar codes, category revisions, stage coverage, and unresolved items.
-- `Coding_Process/Reliability_Original_Labels_Round_1.xlsx` and `Coding_Process/Reliability_Original_Labels_Round_2.xlsx`: Original labels and rationales from the two rounds of reliability-sample annotation.
-- `Coding_Process/Reliability_and_Final_Review.xlsx`: Agreement calculations, original-label comparisons, disagreement handling, and final review results.
-
-## RQ2: Root-Cause Mechanisms
-
-`RQ2(Root Causes)` contains the classification and coding-process materials for root-cause mechanisms. The codebook defines **24 root-cause categories**, identified by `C01`–`C24`. Root-cause classification focuses on the implementation or configuration mechanism that directly causes the failure; stages and components describe where the mechanism resides.
-
-`RQ2_Codebook.xlsx` is the root-cause codebook, and `Full_Sample_Classification_Labels.xlsx` contains the per-report root-cause classifications. The `Coding_Process/` files follow the same naming convention as RQ1 and contain two rounds of pilot coding, consolidation records, two rounds of original reliability labels, and final review results, together with relevant stages, components, and evidence.
-
-## RQ3: Task Impact and User Observability
-
-`RQ3(Impact and Observability)` contains annotations and analyses of two outcome attributes. Each report receives one primary label for each attribute.
-
-**Task impact** captures the principal consequence of the failure for the user's task:
-
-- `Noncompletion`: The task is not completed.
-- `Partial completion`: The task is partially completed.
-- `Incorrect result`: The execution produces an incorrect result.
-
-**User observability** captures how the failure can be detected:
-
-- `Directly apparent`: The failure is directly apparent from normal user-facing responses, interfaces, or operational feedback.
-- `Requires additional verification`: Detecting the failure requires additional checking of outputs, logs, actual execution, or persistent state.
-
-Insufficient evidence is retained as `Undetermined` in the original annotations. Subsequent assignments and review results separately retain their rationales and assignment types.
-
-Key files:
-
-- `RQ3_Attribute_Analysis.xlsx`: Attribute analyses, representative labels, and typical cases organized by failure-symptom and root-cause category.
-- `Full_Sample_Labels.csv`: Per-report attribute labels for 901 reports, together with related classifications, rationales, and assignment types. This file supports full-sample attribute distributions and the joint distribution of the two attributes.
-- `Coding_Process/Pilot_Original_Labels_Round_1.csv` and `Coding_Process/Pilot_Original_Labels_Round_2.csv`: Two recorded labels for each of the 452 Pilot reports, with per-row source notes.
-- `Coding_Process/Pilot_Attribute_Labels.csv`: Attribute records for the 452 reports in the Pilot roster.
-- `Coding_Process/Reliability_Original_Labels_Round_1.csv` and `Coding_Process/Reliability_Original_Labels_Round_2.csv`: Two recorded labels for all 449 Reliability reports, with the annotation source on each row.
-- `Coding_Process/Original_Label_Comparison.csv`: Field-level comparisons of the two rounds of original labels.
-- `Coding_Process/Disagreements_and_Undetermined_Review.csv`: Subsequent review records for disagreements and undetermined items.
-
-## RQ1–RQ3 Agreement Results
-
-- [RQ1 agreement results](RQ1%28Symptoms%29/RQ1_RQ2_Kappa_Results_and_Interpretation.md)
-- [RQ2 agreement results](RQ2%28Root%20Causes%29/RQ1_RQ2_Kappa_Results_and_Interpretation.md)
-- [RQ3 agreement results](RQ3%28Impact%20and%20Observability%29/RQ3_Kappa_and_Statistics.md)
-
-## RQ4: Corrective Actions and Repair Cost
-
-`RQ4(repair)` contains source records for all 901 retained reports. The repair-strategy, recorded handling duration, and change-size summaries use the same working set of 359 reports.
-
-The `RQ4_repair/` subfolder provides repair-strategy coding for **359 reports with codable corrective actions**, with **187 Pilot reports** and **172 Reliability reports** in the original RQ4 split. The codebook defines seven strategies: interface and representation alignment; Skill and context provisioning; execution and state consistency; configuration and environment adaptation; access and trust-boundary enforcement; feedback and artifact delivery; and procedural guidance correction. Strategies describe corrective actions rather than being assigned directly from root-cause IDs. A root cause may correspond to multiple strategies.
-
-Cohen’s kappa for the two stored coding passes on the **172 codable reports** in the original RQ4 Reliability subset is **0.902142**. The two passes agreed on **158 reports** and differed on **14**. Repair-strategy percentages use **359 reports** as the denominator; the full source dataset contains **901 reports**.
-
-Key files:
-
-- `Repair_Strategies_and_Cost_Full_Sample_Labels.csv`: Per-report records for all 901 reports, including Issue URLs, invocation stages, failure descriptions, root-cause descriptions and category labels, repair approaches, recorded handling durations and code changes, report summaries, and review rationales. The file also retains the associated symptom classifications and outcome attributes.
-- [`RQ4_359_Selected_Repairs.xlsx`](RQ4%28repair%29/RQ4_359_Selected_Repairs.xlsx) contains the 359 selected reports, their repair evidence and strategy labels, and summaries of recorded handling duration and change size by repair strategy.
-- [`Root_Cause_Repair_Cost_359.xlsx`](RQ4%28repair%29/Root_Cause_Repair_Cost_359.xlsx) summarizes recorded handling duration and change size by root-cause category for the same 359 reports.
-- [`RQ4_repair/Repair_Coding_Report.md`](RQ4%28repair%29/RQ4_repair/Repair_Coding_Report.md): Sample reconciliation, coding procedures, strategy distributions, agreement results, root-cause associations, and evidence-audit examples.
-- [`RQ4_repair/Repair_Strategy_Codebook.md`](RQ4%28repair%29/RQ4_repair/Repair_Strategy_Codebook.md): Definitions, included actions, category boundaries, single-label selection rules, and examples for the seven repair strategies.
-- [`RQ4_repair/Repair_Strategy_Coding.xlsx`](RQ4%28repair%29/RQ4_repair/Repair_Strategy_Coding.xlsx): Thirteen worksheets containing the codebook, both original annotation sets and reviewed labels for 359 reports, strategy distributions, root-cause cross-tabulations, reliability calculations, disagreements, scope checks, and all 901 source records.
-
-Corrective-action analysis distinguishes applied corrections from unmerged proposals and closures without repair evidence. Issue closure does not establish successful repair. Recorded handling duration describes the Issue lifecycle rather than active development effort, and code change size is considered separately. Reports without identifiable applied changes are not interpreted as zero-cost repairs.
+We thank the maintainers and contributors of the five projects for reporting, discussing, and investigating the failures included in this study.
