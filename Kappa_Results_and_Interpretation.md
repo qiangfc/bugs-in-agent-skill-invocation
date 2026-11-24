@@ -4,7 +4,7 @@
 
 For RQ1–RQ3, the 901 reports in [Full_Sample_Labels.csv](Full_Sample_Labels.csv) are divided into **452 Pilot** and **449 Reliability** reports. Within each repository, reports were sorted by issue number. Half of the reports, rounded up, were sampled without replacement for Pilot using Python’s `random.Random(42).sample`. The remaining reports formed the Reliability sample.
 
-For RQ4, the **359 reports with codable corrective actions** were matched by issue URL to the current Pilot and Reliability assignments in the full-sample dataset. Of these, **181** are in the Pilot group and **178** are in the Reliability group. The RQ4 coefficient uses the 178 Reliability reports.
+For RQ4, the **359 reports with codable corrective actions** included **187 Pilot** and **172 Reliability** reports.
 
 ## Agreement on the Reliability Samples
 
@@ -23,7 +23,7 @@ For RQ4, the **359 reports with codable corrective actions** were matched by iss
 
 ### RQ4
 
-- **Repair strategy** (n = 178). The two recorded coding passes agreed on 165 reports and disagreed on 13. Observed agreement was 0.926966, expected agreement by chance was 0.166519, and **κ = 0.912375**.
+- **Repair strategy** (n = 172). The two coding passes agreed on 158 reports and disagreed on 14. Observed agreement was 0.918605, expected agreement by chance was 0.168233, and **κ = 0.902142**.
 
 ## Interpretation
 
